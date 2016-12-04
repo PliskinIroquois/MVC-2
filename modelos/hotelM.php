@@ -62,9 +62,10 @@ class hotelM{
 	public static function find($id) {
 		$bd = BaseDatos::getInstance();
 		$bd->connect();
-		$columnas= array('IdH','nombre','descripcion','cantidadEstrellas','ciudad','direccion','telefono','email','ubicacionFotografia');
+		$campos= array('IdH','nombre','descripcion','cantidadEstrellas','ciudad','direccion','telefono','email','ubicacionFotografia');
 		$filtros = array('IdH' => $id);
-		$datos = $bd->select(self::$tabla, $columnas, $filtros,TRUE);
+		//$datos = $bd->select(self::$tabla, $columnas, $filtros,TRUE); OJO EL ERROR SUYO
+		$datos=$bd->select($tabla, $filtros, $campos, true);
 		$hotel = new hotelM();
 		foreach ($datos as $item) {
 			$hotel->id = $item['IdH'];
