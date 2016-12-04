@@ -20,7 +20,7 @@ class hotelController {
 	public function show() {
 		$hoteles = hotelM::findAll();
 		if($hoteles<>null){
-		require_once 'Hotel/MostrarH.php';
+		require_once 'vistas/Hotel/MostrarH.php';
 		}else{
 			echo"<script>
 					history.go(-1);
@@ -32,7 +32,7 @@ class hotelController {
 	public function findByID($id) {
 		$hoteles = hotelM::find($id);
 		if($hoteles<>null){
-		require_once 'Hotel/EditarH.php';
+		require_once 'vistas/Hotel/EditarH.php';
 		}else{
 			echo"<script>
 					history.go(-1);

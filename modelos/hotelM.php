@@ -61,45 +61,47 @@ class hotelM{
 
 	public static function find($id) {
 		$bd = BaseDatos::getInstance();
-		$bd->conectar();
+		$bd->connect();
 		$columnas= array('idHotel','nombre','descripcion','cantidadEstrellas','ciudad','direccion','telefono','email','ubicacionFotografia');
 		$filtros = array('idHotel' => $id);
-		$datos = $bd->select(self::$tabla, $columnas, $filtros);
+		$datos = $bd->select(self::$tabla, $columnas, $filtros,TRUE);
 		$hotel = new hotelM();
 		foreach ($datos as $item) {
 			$hotel->id = $item['idHotel'];
 			$hotel->nombre = $item['nombre'];
 			$hotel->descripcion = $item['descripcion'];
 			$hotel->cantidadEstrellas = $item['cantidadEstrellas'];
+			$hotel->ciudad=$item['ciudad'];
 			$hotel->direccion = $item['direccion'];
 			$hotel->telefono = $item['telefono'];
 			$hotel->email = $item['email'];
 			$hotel->ubicacionFotografia = $item['ubicacionFotografia'];
 			break;
 		}
-		$bd->desconectar();
+		$bd->disconnect();
 		return $hotel;
 	}
 
 	public static function findAll() {
 		$bd = BaseDatos::getInstance();
-		$bd->conectar();
+		$bd->connect();
 		$columnas= array('idHotel','nombre','descripcion','cantidadEstrellas','ciudad','direccion','telefono','email','ubicacionFotografia');
-		$datos = $bd->select(self::$tabla, $columnas);
+		$datos = $bd->select(self::$tabla, $columnas,' ',false);
 		$hoteles= array();
 		foreach ($datos as $item) {
 			$hotel = new hotelM();
-			$hotel->id = $item['idHotel'];
+			$hotel->id = $item['IdH'];
 			$hotel->nombre = $item['nombre'];
 			$hotel->descripcion = $item['descripcion'];
 			$hotel->cantidadEstrellas = $item['cantidadEstrellas'];
+			$hotel->ciudad=$item['ciudad'];
 			$hotel->direccion = $item['direccion'];
 			$hotel->telefono = $item['telefono'];
 			$hotel->email = $item['email'];
 			$hotel->ubicacionFotografia = $item['ubicacionFotografia'];
 			array_push($hoteles, $hotel);
 		}
-		$bd->desconectar();
+		$bd->disconnect();
 		return $hoteles;
 	}
 
