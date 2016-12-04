@@ -1,34 +1,47 @@
+<?php
+require_once 'vistas/_commons/header.php';
+?>
 
+<h1>Lista de Hoteles</h1>
+<div class="user-index-container">
+    <table border="1">
+        <tr>
+            <th>Id Hotel</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Estrellas</th>
+            <th>Ciudad</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Imagen</th>
+        </tr>
+        <?php foreach ($hoteles as $hotel): ?>
+            <tr>
+                <td>
+                    <a href="hotel.php?action=show&id=<?php echo $hotel->id; ?>">
+                        <?php echo ($hotel->id ); ?>
+                    </a>
+                </td>
+                <td><?php echo $hotel->nombre; ?></td>
+                <td><?php echo $hotel->descripcion; ?></td>
+                <td><?php echo $hotel->cantidadEstrellas; ?></td>
+                <td><?php echo $hotel->ciudad; ?></td>
+                <td><?php echo $hotel->direccion; ?></td>
+                <td><?php echo $hotel->telefono; ?></td>
+                <td><?php echo $hotel->email; ?></td>
+                <td><?php echo $hotel->ubicacionFotografia; ?></td>
+                
+                <td>
+                    <a href="hotel.php?action=edit&id=<?php echo $hotel->id; ?>">Editar</a>
+                    &nbsp; | &nbsp;
+                    <a href="hotel.php?action=delete&id=<?php echo $hotel->id; ?>">Eliminar</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
 
 <?php
-
-
-echo"<h1>Lista de Hoteles Registrados</h1>";
-
-echo "<form>
-<table border='1'><tr><td>ID Hotel<td>Nombre<td>Descripcion<td>Estrellas<td>ciudad<td>Direccion<td>Telefono<td>Email<td>Imagen</tr>";
-foreach ($hoteles as $hotel):
-echo"<tr><td>$hotel->id</td>
-<td>$hotel->nombre</td>
-<td>$hotel->descripcion</td>
-<td>$hotel->cantidadEstrellas</td>
-<td>$hotel->ciudad</td>
-<td>$hotel->direccion</td>
-<td>$hotel->telefono</td>
-<td>$hotel->email</td>
-<td><img width='400' height='400' src='$hotel->ubicacionFotografia'</td></tr>";
-
-endforeach;
-echo "</table>
-		<br>
-		<td width='50%'></td></form>";
+require_once 'vistas/_commons/footer.php';
 ?>
-<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
-<link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
-<ul id="MenuBar1" class="MenuBarHorizontal">
-  <li><a class="MenuBarItemSubmenu" href="vistas/MenuPrincipal.php">MenuPrincipal</a>
-    
-</ul>
-<script type="text/javascript">
-var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
-</script>

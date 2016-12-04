@@ -61,20 +61,20 @@ class hotelController {
 
 	public function edit($id, Request $request) {
 		$hotel = hotelM::find($id);
-		if (($this->requestMethod == Request::POST)&&($this->requestMethod == Request::FILES)) {
+		if (($this->requestMethod == Request::POST)) {
 
 			$hotel->id = $request->input('idHotel');
 			$hotel->nombre = $request->input('nombre');
-			$hotel->apellidos = $request->input('descripcion');
+			$hotel->descripcion = $request->input('descripcion');
 			$hotel->cantidadEstrellas = $request->input('estrellas');
-			$hotel->ciudad = $request->input('');
+			$hotel->ciudad = $request->input('ciudad');
 			$hotel->direccion = $request->input('direccion');
 			$hotel->telefono = $request->input('telefono');
 			$hotel->email = $request->input('email');
-			$archivo = $request->input('imagen')['tmp_name'];
-			$destino = $request->input('imagen')['name'];
-			move_uploaded_file($archivo, $destino);
-			$hotel->ubicacionFotografia = $destino;
+			//$archivo = $request->input('imagen')['tmp_name'];
+			//$destino = $request->input('imagen')['name'];
+			//move_uploaded_file($archivo, $destino);
+			//$hotel->ubicacionFotografia = $destino;
 			$hotel->save();
 			
 			header('Location: ' . WEB_PATH . '../../hotel.php?action=index');
